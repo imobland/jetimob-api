@@ -1,7 +1,6 @@
+import axios from "axios";
 import { JetimobApi } from "../src";
 import getTokenFromCookie from "../src/utils/getTokenFromCookie";
-import loadImoblandProperties from "../src/lib/loadImoblandProperties";
-import axios from "axios";
 
 const newLine = `\n`;
 const line = "\n" + "-".repeat(80);
@@ -159,11 +158,10 @@ ${imoblandAttributes}
   `
   );
 }
-// const token = getTokenFromCookie(
-//   "_gcl_au=1.1.1649282097.1644327897; prism_798587401=185cb881-1cf8-4e09-a0aa-3737879b5c78; _gac_UA-35367062-1=1.1645809555.Cj0KCQiAmeKQBhDvARIsAHJ7mF7C06Bf6Z8F6PmyJghf1Jn7MUFs8JqlATbOl2cQ6F0ZbhIeJbZWbaQaAsnHEALw_wcB; _ga=GA1.2.294151432.1644327897; _ga_6HMTRSM3WN=GS1.1.1647666725.2.1.1647666779.0; _ga_T51VJHYQQM=GS1.1.1647666725.2.1.1647666779.0; _ga_LN9DLP0FXN=GS1.1.1647666725.2.1.1647666779.0; _gid=GA1.2.5836918.1647896221; jetimob_login=MjEwNjAxMTQ5MCwzNTM3MTkxNzYwLDQ2Mzk5OTQ3MywyMTI5MjE3NDcwLDU2MjAyNDY5OCwxNjA0MzY4NDU5LDI2MDM4MzIxNjEsMTU1NjE5NzA4LDUxOTYyMTc2NywyMjMxMjAzODMz; jetimob_session=NuFTNuVWS6BXrIDuSbxDVku9Cm4M4NgB4YYIbvef; crisp-client%2Fsession%2F5af14d60-b730-47df-9794-1592f6976d7d=session_70c16c21-49f3-46fa-ae8c-fe6cd513e283"
-// );
 
-const api = JetimobApi({ token: "IyptPkGSzHCLO2G7PH8jtgdzv7QAcxvIdzTWB3gx" });
+const AccessToken = getTokenFromCookie(process.env.JETIMOB_COOKIE);
+
+const api = JetimobApi({ token: AccessToken });
 
 api.setDefaultValues({
   person_id: 1593152, //person.data.id,
@@ -171,8 +169,8 @@ api.setDefaultValues({
   building_status: 3,
   occupation: 1,
 });
-// const person = await api.getPersonByName("Imobiliária Vila Nova");
 
+// const person = await api.getPersonByName("Imobiliária Vila Nova");
 // console.log(person.data.id);
 
 async function syncPropertyByCode(property_code, options: any = {}) {
@@ -293,7 +291,7 @@ async function syncAllProperties() {
     console.log(`OK (${index})`, response);
     index++;
   }
-  
+
   console.log("Concluído");
 }
 

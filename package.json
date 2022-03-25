@@ -8,9 +8,14 @@
   },
   "main": "dist/index.js",
   "scripts": {
+    "listar-imoveis": "ts-node-dev examples/listarImoveis.ts",
+    "obter-imovel": "ts-node-dev examples/obterImovel.ts",
+    "editar-imovel": "ts-node-dev examples/editarImovel.ts",
+    "deletar-imovel": "ts-node-dev examples/deletarImovel.ts",
+    "cadastrar-imovel": "ts-node-dev examples/cadastrarImovel.ts",
+    "adicionar-foto": "ts-node-dev examples/adicionarFoto.ts",
     "build": "rimraf dist | tsc",
-    "dev": "ts-node-dev -r tsconfig-paths/register --exit-child --respawn --transpile-only --ignore-watch node_modules --no-notify dev/index.ts",
-    "dev2": "node src/lib/loadAdminProperties.js"
+    "dev": "ts-node-dev dev/sincronizarImoveis.ts"
   },
   "devDependencies": {
     "@types/jest": "^26.0.0",

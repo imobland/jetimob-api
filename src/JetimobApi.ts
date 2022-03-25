@@ -23,7 +23,7 @@ export default function JetimobApi({ token }: Props) {
 
   /* ------------------------------------------------------------------------ */
 
-  const listProperties = handleResponse(async (page: number = 0) => {
+  const listProperties = handleResponse(async (page: number = 1) => {
     console.log("list properties...");
 
     const { data } = await axios.request({
